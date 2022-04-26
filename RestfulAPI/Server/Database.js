@@ -31,81 +31,46 @@ con.connect((err) => {
 
 // CRUD
 function Create(id, name) {
-    console.log('ID : ' + id)
-    console.log('NAME : ' + name)
-
-    // Basic 
-    // let q = "INSERT INTO Robots (Id , Name) VALUES (1, 'Robot1')"
-    // console.log(q)
-
-    // con.query(query, (err, rows, fields) => {
-    //     if (!err) {
-    //         console.log('Database Insert Success')
-    //     }
-    //     else {
-    //         console.log(err)
-    //     }
-    // })
+    console.log('-----------------Database.js Function(CREATE)-----------------')
+    // console.log('ID : ' + id)
+    // console.log('NAME : ' + name)
 
     let query = "INSERT INTO Robots (Id , Name) VALUES (" + id + " , " + "\'" + name + '\'' + ")"
-    console.log("Query : " + query)
+    // console.log("Query : " + query)
 
     const promise = new Promise((resolve, reject) => {
         try {
             con.query(query, (err, results) => {
                 if (!err) {
+                    console.log('Data from DB : ' + JSON.stringify(results))
                     resolve(console.log('Database Insert Success'));
                 }
                 else {
-                    console.log(err)
+                    reject('Error1 : ' + err)
                 }
             })
         } catch (error) {
-            reject('Error : ' + error)
+            reject('Error2 : ' + error)
         }
     })
     return promise;
 }
 
 function Delete(id) {
-    // Basic
-    // let safe_query = 'SET SQL_SAFE_UPDATES = 0'
-    // console.log(safe_query)
-
-    // con.query(safe_query, id, (err, rows, fields) => {
-    //     if (!err) {
-    //         console.log('Safe Model Unlock')
-    //     }
-    //     else {
-    //         console.log(err)
-    //     }
-    // })
-
-    // let query = 'DELETE FROM Robots WHERE Id = ' + id
-    // console.log("Query : " + query)
-
-    // con.query(query, id, (err, rows, fields) => {
-    //     if (!err) {
-    //         console.log('DELETE Success')
-    //     }
-    //     else {
-    //         console.log(err)
-    //     }
-    // })
-
+    console.log('-----------------Database.js Function(Delete)-----------------')
     const promise = new Promise((resolve, reject) => {
         try {
-            let safe_query = 'SET SQL_SAFE_UPDATES = 0'
-            console.log('Safe Query : ' + safe_query)
+            // let safe_query = 'SET SQL_SAFE_UPDATES = 0'
+            // console.log('Safe Query : ' + safe_query)
 
-            con.query(safe_query, id, (err, rows, fields) => {
-                if (!err) {
-                    resolve(console.log('Safe Model Unlock'))
-                }
-                else {
-                    console.log(err)
-                }
-            })
+            // con.query(safe_query, id, (err, rows, fields) => {
+            //     if (!err) {
+            //         resolve(console.log('Safe Model Unlock'))
+            //     }
+            //     else {
+            //         console.log(err)
+            //     }
+            // })
 
             let query = 'DELETE FROM Robots WHERE Id = ' + id
             console.log("Query : " + query)
@@ -115,7 +80,7 @@ function Delete(id) {
                     resolve(console.log('DELETE Success'))
                 }
                 else {
-                    console.log(err)
+                    reject('Error : ' + err)
                 }
             })
 
@@ -127,57 +92,30 @@ function Delete(id) {
 }
 
 function Update(id, name) {
-    // Basic
-    // let q = "UPDATE Robots SET Name = '_TM250' WHERE Id = 1;"
-    // console.log(q)
-
-    // let safe_query = 'SET SQL_SAFE_UPDATES = 0'
-    // console.log(safe_query)
-
-    // con.query(safe_query, id, (err, rows, fields) => {
-    //     if (!err) {
-    //         console.log('Safe Model Unlock')
-    //     }
-    //     else {
-    //         console.log(err)
-    //     }
-    // })
-
-    // let query = "UPDATE Robots SET Name = " + "\'" + name + "\'" + " WHERE Id = " + id + ";"
-    // console.log("Query : " + query)
-
-    // con.query(query, (err, rows, fields) => {
-    //     if (!err) {
-    //         console.log('Database Update Success')
-    //     }
-    //     else {
-    //         console.log(err)
-    //     }
-    // })
-
+    console.log('-----------------Database.js Function(UPDATE)-----------------')
     const promise = new Promise((resolve, reject) => {
         try {
-            let safe_query = 'SET SQL_SAFE_UPDATES = 0'
-            console.log(safe_query)
+            // let safe_query = 'SET SQL_SAFE_UPDATES = 0'
+            // console.log(safe_query)
 
-            con.query(safe_query, id, (err, rows, fields) => {
-                if (!err) {
-                    console.log('Safe Model Unlock')
-                }
-                else {
-                    console.log(err)
-                }
-            })
+            // con.query(safe_query, id, (err, rows, fields) => {
+            //     if (!err) {
+            //         console.log('Safe Model Unlock')
+            //     }
+            //     else {
+            //         console.log(err)
+            //     }
+            // })
 
             let query = "UPDATE Robots SET Name = " + "\'" + name + "\'" + " WHERE Id = " + id + ";"
             console.log("Query : " + query)
 
             con.query(query, (err, rows, fields) => {
                 if (!err) {
-                    console.log('Database Update Success')
+                    resolve(console.log('Database Update Success'))
                 }
                 else {
-                    console.log(err)
+                    reject('Error : ' + err)
                 }
             })
         } catch (error) {
@@ -188,15 +126,16 @@ function Update(id, name) {
 }
 
 function Read() {
+    console.log('-----------------Database.js Function(READ)-----------------')
     const promise1 = new Promise((resolve, reject) => {
         try {
             const query = "SELECT * FROM Robots;";
 
             con.query(query, (err, results) => {
                 if (err) {
-                    console.log('err => ' + err.message)
+                    reject(console.log('Error : ' + err.message))
                 } else {
-                    console.log('results => ' + JSON.stringify(results))
+                    console.log('Data from DB : ' + JSON.stringify(results))
                     resolve(results)
                 }
             })

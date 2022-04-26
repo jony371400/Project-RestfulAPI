@@ -6,7 +6,8 @@ function ReadAPI_Click() {
         .then(res => {
             console.log('RES : ', res)
             return res.json();
-        }).then(result => {
+        })
+        .then(result => {
             console.log('RESULT : ', result);
             console.log('Length : ', result.length)
 
@@ -14,7 +15,10 @@ function ReadAPI_Click() {
             LoadTable_Data(result)
 
             document.getElementById('p1').innerHTML = 'Robot Table';
-        });
+        })
+        .catch(() => {
+            console.log('Read Fail!')
+        });;
 }
 
 // #region Table Init

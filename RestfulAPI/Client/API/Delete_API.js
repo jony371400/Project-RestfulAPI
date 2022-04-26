@@ -17,9 +17,13 @@ function DeleteAPI_Click() {
             console.log('Here RES!')
             console.log(res)
             return res.json();
-        }).then(result => {
+        })
+        .then(result => {
             console.log('Here RESULT!')
             console.log(result);
             document.getElementById('p1').innerHTML = 'Delete Success';
-        });
+        })        
+        .catch(() => {
+            console.log('Delete Fail!')
+        });;
 }
