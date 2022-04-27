@@ -51,12 +51,15 @@ app.post('/Robot', urlencodedParser, (req, res) => {
 
     DB.Create(req.body.FID, req.body.FNAME)
         .then((results) => {
-            console.log('RESULTS from [Database.js] : ', results)
+            console.log('-----------------Server.js Function(CREATE)-----------------')
+            console.log("\x1b[36m%s\x1b[0m", 'Create Success!')
+            console.log('DATA from DbHandler : ', results)
             // console.log('RES : ', returnJSON)
             res.json(returnJSON)
         })
         .catch(() => {
-            console.log('Read Error!')
+            console.log('-----------------Server.js Function(CREATE)-----------------')
+            console.log("\x1b[31m%s\x1b[0m", 'Create Error!')
             res.end()
         })
 })
@@ -72,11 +75,15 @@ app.delete('/Robot', (req, res) => {
 
     DB.Delete(req.body.FID)
         .then(() => {
+            console.log('-----------------Server.js Function(DELETE)-----------------')
+            console.log("\x1b[36m%s\x1b[0m", 'Delete Success!')
             console.log('RES : ', returnJSON)
             res.json(returnJSON)
         })
         .catch(() => {
-            console.log('Read Error!')
+            console.log('-----------------Server.js Function(DELETE)-----------------')
+            console.log("\x1b[31m%s\x1b[0m", 'Delete Error!')
+            res.end()
         })
 })
 
@@ -93,11 +100,15 @@ app.put('/Robot', urlencodedParser, (req, res) => {
 
     DB.Update(req.body.FID, req.body.FNAME)
         .then(() => {
+            console.log('-----------------Server.js Function(UPDATE)-----------------')
+            console.log("\x1b[36m%s\x1b[0m", 'Update Success!')
             console.log('RES : ', returnJSON)
             res.json(returnJSON)
         })
         .catch(() => {
-            console.log('Update Error!')
+            console.log('-----------------Server.js Function(UPDATE)-----------------')
+            console.log("\x1b[31m%s\x1b[0m", 'Update Error!')
+            res.end()
         })
 })
 
@@ -107,12 +118,15 @@ app.get('/Robot', (req, res) => {
 
     DB.Read()
         .then((results) => {
-            console.log('Read Success!')
-            console.log('RESULTS from [Database.js] : ', results)
+            console.log('-----------------Server.js Function(READ)-----------------')
+            console.log("\x1b[36m%s\x1b[0m", 'Read Success!')
+            console.log('DATA from DbHandler : ', results)
             res.json(results)
         })
         .catch(() => {
-            console.log('Read Error!')
+            console.log('-----------------Server.js Function(READ)-----------------')
+            console.log("\x1b[31m%s\x1b[0m", 'Read Error!')
+            res.end()
         })
 })
 

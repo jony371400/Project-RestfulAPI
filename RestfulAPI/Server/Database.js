@@ -42,15 +42,18 @@ function Create(id, name) {
         try {
             con.query(query, (err, results) => {
                 if (!err) {
+                    console.log("\x1b[36m%s\x1b[0m", 'Create Database Success!')
                     console.log('Data from DB : ' + JSON.stringify(results))
-                    resolve(console.log('Database Insert Success'));
+                    resolve(results);
                 }
                 else {
-                    reject('Error1 : ' + err)
+                    console.log("\x1b[31m%s\x1b[0m", 'Create Database Fail!')
+                    console.log('Error Msg About Wrong [QUERY] : ' + err.message)
+                    reject()
                 }
             })
         } catch (error) {
-            reject('Error2 : ' + error)
+            reject('Error : ' + error)
         }
     })
     return promise;
@@ -60,27 +63,19 @@ function Delete(id) {
     console.log('-----------------Database.js Function(Delete)-----------------')
     const promise = new Promise((resolve, reject) => {
         try {
-            // let safe_query = 'SET SQL_SAFE_UPDATES = 0'
-            // console.log('Safe Query : ' + safe_query)
-
-            // con.query(safe_query, id, (err, rows, fields) => {
-            //     if (!err) {
-            //         resolve(console.log('Safe Model Unlock'))
-            //     }
-            //     else {
-            //         console.log(err)
-            //     }
-            // })
-
             let query = 'DELETE FROM Robots WHERE Id = ' + id
-            console.log("Query : " + query)
+            // console.log("Query : " + query)
 
             con.query(query, id, (err, rows, fields) => {
                 if (!err) {
-                    resolve(console.log('DELETE Success'))
+                    console.log("\x1b[36m%s\x1b[0m", 'Delete Database Success!')
+                    // console.log('Data from DB : ' + JSON.stringify(results))
+                    resolve()
                 }
                 else {
-                    reject('Error : ' + err)
+                    console.log("\x1b[31m%s\x1b[0m", 'Delete Database Fail!')
+                    console.log('Error Msg About Wrong [QUERY] : ' + err.message)
+                    reject()
                 }
             })
 
@@ -95,27 +90,19 @@ function Update(id, name) {
     console.log('-----------------Database.js Function(UPDATE)-----------------')
     const promise = new Promise((resolve, reject) => {
         try {
-            // let safe_query = 'SET SQL_SAFE_UPDATES = 0'
-            // console.log(safe_query)
-
-            // con.query(safe_query, id, (err, rows, fields) => {
-            //     if (!err) {
-            //         console.log('Safe Model Unlock')
-            //     }
-            //     else {
-            //         console.log(err)
-            //     }
-            // })
-
             let query = "UPDATE Robots SET Name = " + "\'" + name + "\'" + " WHERE Id = " + id + ";"
-            console.log("Query : " + query)
+            // console.log("Query : " + query)
 
             con.query(query, (err, rows, fields) => {
                 if (!err) {
-                    resolve(console.log('Database Update Success'))
+                    console.log("\x1b[36m%s\x1b[0m", 'Update Database Success!')
+                    // console.log('Data from DB : ' + JSON.stringify(results))
+                    resolve()
                 }
                 else {
-                    reject('Error : ' + err)
+                    console.log("\x1b[31m%s\x1b[0m", 'Update Database Fail!')
+                    console.log('Error Msg About Wrong [QUERY] : ' + err.message)
+                    reject()
                 }
             })
         } catch (error) {
@@ -133,8 +120,11 @@ function Read() {
 
             con.query(query, (err, results) => {
                 if (err) {
-                    reject(console.log('Error : ' + err.message))
+                    console.log("\x1b[31m%s\x1b[0m", 'Read Database Fail!')
+                    console.log('Error Msg About Wrong [QUERY] : ' + err.message)
+                    reject()
                 } else {
+                    console.log("\x1b[36m%s\x1b[0m", 'Read Database Success!')
                     console.log('Data from DB : ' + JSON.stringify(results))
                     resolve(results)
                 }
