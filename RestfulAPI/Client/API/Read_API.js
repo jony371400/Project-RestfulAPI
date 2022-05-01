@@ -1,15 +1,19 @@
 function ReadAPI_Click() {
     const uri = 'http://127.0.0.1:3001/Robot';
 
+    console.log('-----------------Read_API.js Function(CREATE)-----------------')
     console.log('Go to do ReadAPI-FETCH')
+
     fetch(uri, { method: 'GET' })
         .then(res => {
+            console.log('-----------------Read_API.js Function(CREATE)-----------------')
             console.log('RES : ', res)
             return res.json();
         })
         .then(result => {
+            console.log('-----------------Read_API.js Function(CREATE)-----------------')
             console.log('RESULT : ', result);
-            console.log('Length : ', result.length)
+            // console.log('Length : ', result.length)
 
             LoadTable_Tittle()
             LoadTable_Data(result)
@@ -17,6 +21,7 @@ function ReadAPI_Click() {
             document.getElementById('p1').innerHTML = 'Robot Table';
         })
         .catch(() => {
+            console.log('-----------------Read_API.js Function(CREATE)-----------------')
             console.log('Read Fail!')
         });;
 }

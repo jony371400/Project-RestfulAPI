@@ -3,18 +3,11 @@ function CreateAPI_Click() {
     const Id = document.getElementById("CreateId").value;
     const Name = document.getElementById("CreateName").value;
     const data = { FID: Id, FNAME: Name };
-    console.log(data);
+    // console.log(data);
 
-    // console.log(typeof (Id))
-    // if (typeof (Id) != 'int') {
-    //     console.log('err')
-    // }
-    // else {
-    //     console.log('Success')
-    // }
-
-
+    console.log('-----------------Create_API.js Function(CREATE)-----------------')
     console.log('Go to do CreateAPI-FETCH[POST]')
+    
     fetch(uri, {
         method: 'POST',
         headers: {
@@ -24,16 +17,17 @@ function CreateAPI_Click() {
         body: JSON.stringify(data),
     })
         .then(res => {
-            console.log('Here RES!')
-            console.log(res)
+            console.log('-----------------Create_API.js Function(CREATE)-----------------')
+            console.log('RES : ' , res)
             return res.json();
         })
         .then(result => {
-            console.log('Here RESULT!')
-            console.log(result);
+            console.log('-----------------Create_API.js Function(CREATE)-----------------')
+            console.log('RESULT : ' , result)
             document.getElementById('p1').innerHTML = ' ID : ' + result.BID + ' & ' + ' NAME : ' + result.BNAME;
         })
         .catch(() => {
+            console.log('-----------------Create_API.js Function(CREATE)-----------------')
             console.log('Create Fail!')
         });
 }

@@ -3,6 +3,7 @@ function DeleteAPI_Click() {
     const Id = document.getElementById("deleteId").value;
     const data = { FID: Id };
 
+    console.log('-----------------Delete_API.js Function(CREATE)-----------------')
     console.log('Go to do DeleteAPI-FETCH')
     fetch(uri, {
         // method: 'POST',
@@ -14,16 +15,17 @@ function DeleteAPI_Click() {
         body: JSON.stringify(data),
     })
         .then(res => {
-            console.log('Here RES!')
-            console.log(res)
+            console.log('-----------------Delete_API.js Function(CREATE)-----------------')
+            console.log('RES : ' , res)
             return res.json();
         })
         .then(result => {
-            console.log('Here RESULT!')
-            console.log(result);
+            console.log('-----------------Delete_API.js Function(CREATE)-----------------')
+            console.log('RESULT : ' , result)
             document.getElementById('p1').innerHTML = 'Delete Success';
         })        
         .catch(() => {
+            console.log('-----------------Delete_API.js Function(CREATE)-----------------')
             console.log('Delete Fail!')
         });;
 }
