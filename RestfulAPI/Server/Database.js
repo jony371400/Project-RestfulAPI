@@ -5,18 +5,18 @@ const mysql = require('mysql');
 // Config
 const con = mysql.createConnection({
     // Mac Setup
-    // host: "localhost",
-    // user: "root",
-    // password: "asd0986458212",
-    // port: '3306',
-    // database: 'AMR'
-
-    // Linux Setup
     host: "localhost",
-    user: "debian-sys-maint",
-    password: "oROoMcjAmrQaCHBb",
+    user: "root",
+    password: "1234qwer",
     port: '3306',
     database: 'AMR'
+
+    // Linux Setup
+    // host: "localhost",
+    // user: "debian-sys-maint",
+    // password: "oROoMcjAmrQaCHBb",
+    // port: '3306',
+    // database: 'AMR'
 });
 
 // Connect
